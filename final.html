@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Prise Range</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		
+		<link rel="stylesheet" href="jquery-ui.css">
+		<script src="jquery-ui.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var outputSpan = $('#spanOutput');
+				var sliderElement = $('#slider');
+				
+				sliderElement.slider({
+					range:true,
+					min:0,
+					max: 5000000, 
+					values: [0,500000],
+					slide : function (event, ui){
+							//outputSpan.html(ui.values[0] + '-' + ui.values[1] + 'prise');
+							$('#txtminPrise').val(ui.values[0]);
+							$('#txtmaxPrise').val(ui.values[1]);
+							
+						}
+					});
+					outputSpan.html(sliderElement.slider('values',0) + '-' + sliderElement.slider('values',1) + 'Prise');
+					$('#txtminPrise').val(sliderElement.slider('values',0));
+					$('#txtmaxPrise').val(sliderElement.slider('values',1));
+				});
+		
+		</script>
+	</head>
+	<body>
+		<form id="form1" runat="server">
+		<!--	Pirse: <span id="spanOutput"></span> -->
+			<br></br>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4" style="background:lightgreen;">
+					<h2 style="text-align:center;">Product Prise Range</h2><br/><br/>
+					<div style="float:left;">				
+						<label for="txtminPrise">Min</label><br/>
+						<input style="width:80px;height:30px;"type="text" id="txtminPrise"/>
+					</div>	
+					<div style="float:Right;">
+						<label for="txtmaxPrise">Max</label><br/>
+						<input style="width:80px;height:30px;"type="text" id="txtmaxPrise"/>
+					</div><br/>
+					<div  style="margin-top:50px;"id ="slider" style="width:100%; height:10px;"></div>
+					<br/>
+				<div class="col-md-4"></div>
+			</div>
+		</form>
+	</body>
+</html>
+
+
+
